@@ -15,7 +15,7 @@ let minutes = 60;
 app.use(
   session({
     genid: () => uuid(),
-    secret: "Jotaro is best JoJo",
+    secret: "SuperSecretSecretSecret",
     resave: false,
     saveUninitialized: false,
     cookie: {
