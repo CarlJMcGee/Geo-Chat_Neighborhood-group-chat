@@ -47,6 +47,10 @@ User.init(
     },
     neighborhood_id: {
       type: DataTypes.INTEGER,
+      references: {
+        model: "neighborhood",
+        key: "id",
+      },
     },
   },
   {
@@ -57,6 +61,14 @@ User.init(
           10
         );
         return newUserData;
+      },
+
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
+        return updatedUserData;
       },
     },
     sequelize,
