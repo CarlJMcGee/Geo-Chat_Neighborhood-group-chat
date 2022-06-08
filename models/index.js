@@ -1,6 +1,7 @@
 const User = require("./User");
 const Neighborhood = require("./Neighborhood");
 const Post = require("./Post");
+const Comment = require("./Comments");
 
 User.belongsTo(Neighborhood, {
   foreignKey: "neighborhood_id",
@@ -22,6 +23,18 @@ Post.belongsTo(User, {
 });
 
 User.hasMany(Post, {
+  foreignKey: "user_id",
+  hooks: true,
+  onDelete: "CASCADE",
+});
+
+Comment.belongsTo(User, {
+  foreignKey: "user_id",
+  as: "commenter",
+  onDelete: "CASCADE",
+});
+
+User.hasMany(Comment, {
   foreignKey: "user_id",
   hooks: true,
   onDelete: "CASCADE",
