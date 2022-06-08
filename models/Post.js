@@ -16,6 +16,7 @@ Post.init(
       allowNull: false,
       validate: {
         isAlphanumeric: true,
+        len: [1],
       },
     },
     content: {
