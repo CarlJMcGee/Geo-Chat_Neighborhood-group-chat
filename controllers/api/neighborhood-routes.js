@@ -80,7 +80,7 @@ router.get("/", (req, res) => {
 
   // Edit neighborhood
   router.put("/:id", (req, res) => {
-    // Update a comment by its id value
+    // Update a neighborhood by its id value
     Neighborhood.update(req.body, {
       where: {
         id: req.params.id,
