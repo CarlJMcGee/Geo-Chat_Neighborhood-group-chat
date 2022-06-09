@@ -1,0 +1,31 @@
+body {
+    background-color: #d4af37; }
+  
+#log-in {
+    border: 1px solid #151615;
+    width: 50%;
+    margin: 5% auto;
+    padding: 2%;
+    color: #328ef1;
+    background-color: #151615;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    -ms-border-radius: 11px;
+    border-radius: 11px; }
+    @media screen and (max-width: 645px) {
+      #log-in {
+        width: 80%;
+        padding: 5%; } }
+    #log-in .btn {
+      margin-left: 40%; }
+    #log-in input {
+      background-color: #d4af37;
+      border: 1px solid #d4af37; }
+    #log-in input:focus {
+      color: #EAE8D4;
+      background-color: #d4af37;
+      border: 1px solid #d4af37;
+      border-bottom: 3px solid #328ef1; }
+  
+
+      
