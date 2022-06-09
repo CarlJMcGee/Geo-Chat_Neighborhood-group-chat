@@ -1,4 +1,4 @@
-/* Cambridge Blue AEC3AC, Pewter Blue 90ABBA, Beau Blue C7DAE5, Charcoal 1C394A--> from coolers.co */
+/* Teal Blue 517990, Pewter Blue (background color) 90ABBA, Beau Blue C7DAE5, Charcoal 1C394A--> from coolers.co */
 
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -6,17 +6,16 @@
 
 body {
     height: 100%; 
+    background-color: #90ABBA
 }
 
-.main {
-    background-color: #AEC3AC;
+.left h1 {
+    font-weight: bolder;
 }
 #welcome h1 {
     align-items: center;
 }
-.left {
-    background-color: darkgoldenrod; 
-}
+
 #btn {
     color: #c7dac7;
     border-radius: 12px;
@@ -25,8 +24,43 @@ body {
     display: block;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-
-
-.left {
-    background-color: darkgoldenrod; 
+.square {
+    color: #C7DAE5;
+    background-color: #1C394A;
+    border: solid 2px;
+    border-color: #1C394A;
 }
+.square a {
+    align-items: center;
+}
+.form-control {
+    background-color: #C7DAE5;
+}
+
+
+#log-in {
+    border: 1px solid #1C394A;
+    width: 50%;
+    margin: 5% auto;
+    padding: 2%;
+    color: #C7DAE5;
+    background-color: #1C394A;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    -ms-border-radius: 11px;
+    border-radius: 11px; }
+    @media screen and (max-width: 645px) {
+      #log-in {
+        width: 80%;
+        padding: 5%; } }
+    #log-in .btn {
+      margin-left: 40%; }
+    #log-in input {
+      background-color: #C7DAE5;
+      border: 1px solid #C7DAE5; }
+    #log-in input:focus {
+      color: #EAE8D4;
+      background-color: #C7DAE5;
+      border: 1px solid #C7DAE5;
+      border-bottom: 3px solid #517990; }
+  
