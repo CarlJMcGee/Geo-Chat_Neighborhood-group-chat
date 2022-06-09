@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
       },
       // Including associated post data
       {
-        models: post,
+        models: Post,
         attributes: ["name"],
       },
     ],
@@ -53,7 +53,7 @@ router.get("/", (req, res) => {
       },
       // Including associated post data
       {
-        models: post,
+        models: Post,
         attributes: ["name"],
       },
     ],
