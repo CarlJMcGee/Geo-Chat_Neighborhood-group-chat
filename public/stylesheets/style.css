@@ -1,10 +1,32 @@
+/* Cambridge Blue AEC3AC, Pewter Blue 90ABBA, Beau Blue C7DAE5, Charcoal 1C394A--> from coolers.co */
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
     height: 100%; 
 }
 
-.right {
-    background-color: cornflowerblue;
+.main {
+    background-color: #AEC3AC;
 }
+#welcome h1 {
+    align-items: center;
+}
+.left {
+    background-color: darkgoldenrod; 
+}
+#btn {
+    color: #c7dac7;
+    border-radius: 12px;
+    font-weight: bolder;
+    padding: 12px 28px;
+    display: block;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
 .left {
     background-color: darkgoldenrod; 
 }
