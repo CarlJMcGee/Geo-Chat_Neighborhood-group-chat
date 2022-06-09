@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { json } = require("body-parser");
-const { Comments, post, Post, User } = require("../../models");
+const { Comments, Neighborhood, Post, User } = require("../../models");
 
 // The `/api/posts` endpoint
 
