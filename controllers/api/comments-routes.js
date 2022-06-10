@@ -79,7 +79,7 @@ router.get("/:id", (req, res) => {
 });
 
 // Create new comment
-router.Comment("/", (req, res) => {
+router.post("/", (req, res) => {
   // Create a new comment
 
   "id", "title", "content", "user_id";
