@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { json } = require("body-parser");
-const { Comments, Neighborhood, Post, User } = require("../../models");
+const { Comment, Neighborhood, Post, User } = require("../../models");
 
 // The `/api/neighborhoods` endpoint
 
@@ -9,6 +9,35 @@ router.get("/", (req, res) => {
   // find all neighborhoods
   Neighborhood.findAll({
     attributes: ["id", "name"],
+    include: {
+      // all posts in the neighborhood
+      model: Post,
+      attributes: {
+        exclude: ["user_id", "neighborhood_id"],
+      },
+      include: [
+        // original poster's user data
+        {
+          model: User,
+          as: "OP",
+          attributes: {
+            exclude: ["password"],
+          },
+        },
+        // comments data
+        {
+          model: Comment,
+          include: {
+            // comment's poster user data
+            model: User,
+            as: "commenter",
+            attributes: {
+              exclude: ["password"],
+            },
+          },
+        },
+      ],
+    },
   })
     .then((databaseNeighborhoodData) => {
       if (!databaseNeighborhoodData) {
@@ -18,6 +47,8 @@ router.get("/", (req, res) => {
         // Sending the neighborhood to the user if there is any
         return;
       }
+
+      res.json(databaseNeighborhoodData);
     })
     .catch((err) => {
       console.log(err);
@@ -33,6 +64,35 @@ router.get("/:id", (req, res) => {
       id: req.params.id,
     },
     attributes: ["id", "name"],
+    include: {
+      // all posts in the neighborhood
+      model: Post,
+      attributes: {
+        exclude: ["user_id", "neighborhood_id"],
+      },
+      include: [
+        // original poster's user data
+        {
+          model: User,
+          as: "OP",
+          attributes: {
+            exclude: ["password"],
+          },
+        },
+        // comments data
+        {
+          model: Comment,
+          include: {
+            // comment's poster user data
+            model: User,
+            as: "commenter",
+            attributes: {
+              exclude: ["password"],
+            },
+          },
+        },
+      ],
+    },
   })
     .then((databaseNeighborhoodData) => {
       if (!databaseNeighborhoodData) {
@@ -98,9 +158,7 @@ router.put("/:id", (req, res) => {
         return;
       }
       res.json(
-        `Neighborhood with id =>: ${req.params.id} has been successfully changed to  `(
-          databaseNeighborhoodData
-        )
+        `Neighborhood with id =>: ${req.params.id} has been successfully changed to  ${req.body.name}`
       );
     })
     .catch((err) => {

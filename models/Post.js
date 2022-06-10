@@ -15,7 +15,6 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isAlphanumeric: true,
         len: [1],
       },
     },
@@ -30,6 +29,13 @@ Post.init(
       type: DataTypes.INTEGER,
       references: {
         model: "user",
+        key: "id",
+      },
+    },
+    neighborhood_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "neighborhood",
         key: "id",
       },
     },

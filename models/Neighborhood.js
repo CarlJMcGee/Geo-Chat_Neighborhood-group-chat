@@ -14,9 +14,6 @@ Neighborhood.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isAlpha: true,
-      },
     },
   },
   {
