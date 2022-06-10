@@ -7,7 +7,6 @@ const { Comments, Neighborhood, Post, User } = require("../../models");
 // get all users
 router.get("/", (req, res) => {
   // find all users
-
   User.findAll({
     attributes: ["id", "email", "firstName", "lastName"],
 
@@ -38,6 +37,8 @@ router.get("/", (req, res) => {
         // Sending the user to the user if there is any
         return;
       }
+      // Converting data to json format
+      res.json(databaseUserData);
     })
     .catch((err) => {
       console.log(err);
@@ -72,7 +73,7 @@ router.get("/", (req, res) => {
   })
     .then((databaseUserData) => {
       if (!databaseUserData) {
-        // Sending a status 400 message to the user if User with the given id is not found
+        // Sending a status 400 message to the user if user with the given id is not found
         res
           .status(400)
           .json(
@@ -92,7 +93,7 @@ router.get("/", (req, res) => {
     });
 
   // Create new User
-  router.User("/", (req, res) => {
+  router.post("/", (req, res) => {
     // Create a new User
 
     "id", "email", "firstName", "lastName", "password", "neighborhood_id";
@@ -128,7 +129,7 @@ router.get("/", (req, res) => {
 
   // Edit User
   router.put("/:id", (req, res) => {
-    // Update a User by its id value
+    // Update a user by its id value
     User.update(req.body, {
       where: {
         id: req.params.id,
@@ -157,7 +158,7 @@ router.get("/", (req, res) => {
 
   //Delete a User
   router.delete("/:id", (req, res) => {
-    // Delete a User by its id value
+    // Delete a user by its id value
 
     User.destroy({
       where: {
