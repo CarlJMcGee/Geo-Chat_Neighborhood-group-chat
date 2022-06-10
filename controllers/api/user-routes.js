@@ -46,7 +46,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/uid/:id", (req, res) => {
   // Find user by ID
   User.findOne({
     where: {
@@ -145,7 +145,7 @@ router.post("/", (req, res) => {
 });
 
 // Edit User
-router.put("/:id", (req, res) => {
+router.put("/uid/:id", (req, res) => {
   // Update a user by its id value
   User.update(req.body, {
     where: {
@@ -174,7 +174,7 @@ router.put("/:id", (req, res) => {
 });
 
 //Delete a User
-router.delete("/:id", (req, res) => {
+router.delete("/uid/:id", (req, res) => {
   // Delete a user by its id value
 
   User.destroy({
@@ -200,6 +200,53 @@ router.delete("/:id", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
+
+// log user in and create new session with their user_id and neighborhood_id
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if (!user) {
+      res.status(401).send(`Incorrect Email or Password`);
+      return;
+    }
+
+    const auth = await user.checkPassword(req.body.password);
+
+    if (!auth) {
+      res.status(401).send(`Incorrect Email or Password`);
+      return;
+    }
+
+    req.session.regenerate((err) => {
+      req.session.save(() => {
+        req.session.loggedIn = true;
+        req.session.userId = user.id;
+        req.session.neighborhoodId = user.neighborhood_id;
+        console.log(req.session);
+
+        res.status(200).send(`User # ${user.id} logged in`);
+      });
+    });
+  } catch (err) {
+    if (err) throw err;
+  }
+});
+
+// log user out and clear session data
+router.post("/logout", async (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+    return;
+  }
+  res.status(404).end();
 });
 
 module.exports = router;
