@@ -105,5 +105,8 @@ dist
 .tern-port
 
 .DS_Store
+<<<<<<< HEAD
 .DS_Store
+=======
+>>>>>>> e11a7d1fad3238a27ba7ca8ec330200a60914c9a
 .env

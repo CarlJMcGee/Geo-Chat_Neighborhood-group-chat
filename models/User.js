@@ -60,6 +60,7 @@ User.init(
         return newUserData;
       },
       async beforeUpdate(updatedUserData) {
+<<<<<<< HEAD
       beforeCreate: async (newUserData) => {
         newUserData.dataValues.password = await bcrypt.hash(
           newUserData.dataValues.password,
@@ -69,6 +70,8 @@ User.init(
       },
 
       beforeUpdate: async (updatedUserData) => {
+=======
+>>>>>>> e11a7d1fad3238a27ba7ca8ec330200a60914c9a
         updatedUserData.password = await bcrypt.hash(
           updatedUserData.password,
           10

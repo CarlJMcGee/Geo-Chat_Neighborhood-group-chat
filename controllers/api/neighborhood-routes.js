@@ -7,7 +7,6 @@ const { Comments, Neighborhood, Post, User } = require("../../models");
 // get all neighborhoods
 router.get("/", (req, res) => {
   // find all neighborhoods
-
   Neighborhood.findAll({
     attributes: ["id", "name"],
   })
@@ -24,8 +23,11 @@ router.get("/", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
 
-  // Find neighborhood by ID
+// Find neighborhood by ID
+router.get("/:id", (req, res) => {
+  // find neighborhood by its `id`
   Neighborhood.findOne({
     where: {
       id: req.params.id,
@@ -52,88 +54,87 @@ router.get("/", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
 
-  // Create new neighborhood
-  router.post("/", (req, res) => {
-    // Create a new neighborhood
-
-    "id", "name";
-    /* req.body will look like the following
+// Create new neighborhood
+router.post("/", (req, res) => {
+  // Create a new neighborhood
+  "id", "name";
+  /* req.body will look like the following
       {
         "name": "name goes here",
       }
     */
 
-    Neighborhood.create(req.body, {
-      name: req.body.name,
-    })
-      .then((databaseNeighborhoodData) =>
-        res
-          .status(200)
-          .json(`Neighborhood ${req.body.name} has been successfully created!`)
-      )
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
-
-  // Edit neighborhood
-  router.put("/:id", (req, res) => {
-    // Update a comment by its id value
-    Neighborhood.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    })
-      .then((databaseNeighborhoodData) => {
-        if (!databaseNeighborhoodData) {
-          res
-            .status(400)
-            .json(
-              `Sorry, No neighborhood with id =>: ${req.params.id} has been found! Please check your input and try again!`
-            );
-          return;
-        }
-        res.json(
-          `Neighborhood with id =>: ${req.params.id} has been successfully changed to  `(
-            databaseNeighborhoodData
-          )
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
-
-  //Delete a neighborhood
-  router.delete("/:id", (req, res) => {
-    // Delete a neighborhood by its id value
-
-    Neighborhood.destroy({
-      where: {
-        id: req.params.id,
-      },
-    })
-      .then((databaseNeighborhoodData) => {
-        // Sending a status 404 message to the user if no neighborhood with the given id is found
-        if (!databaseNeighborhoodData) {
-          res
-            .status(404)
-            .json(
-              `Sorry, No neighborhood with id ${req.params.id} has been found! Please check your input and try again!`
-            );
-          return;
-        }
-        res.json(
-          `Neighborhood with id =>: ${req.params.id} has been successfully removed`
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
+  Neighborhood.create(req.body, {
+    name: req.body.name,
+  })
+    .then((databaseNeighborhoodData) =>
+      res
+        .status(200)
+        .json(`Neighborhood ${req.body.name} has been successfully created!`)
+    )
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
+
+// Edit neighborhood
+router.put("/:id", (req, res) => {
+  // Update a neighborhood by its id value
+  Neighborhood.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((databaseNeighborhoodData) => {
+      if (!databaseNeighborhoodData) {
+        res
+          .status(400)
+          .json(
+            `Sorry, No neighborhood with id =>: ${req.params.id} has been found! Please check your input and try again!`
+          );
+        return;
+      }
+      res.json(
+        `Neighborhood with id =>: ${req.params.id} has been successfully changed to  `(
+          databaseNeighborhoodData
+        )
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+//Delete a neighborhood
+router.delete("/:id", (req, res) => {
+  // Delete a neighborhood by its id value
+  Neighborhood.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((databaseNeighborhoodData) => {
+      // Sending a status 404 message to the user if no neighborhood with the given id is found
+      if (!databaseNeighborhoodData) {
+        res
+          .status(404)
+          .json(
+            `Sorry, No neighborhood with id ${req.params.id} has been found! Please check your input and try again!`
+          );
+        return;
+      }
+      res.json(
+        `Neighborhood with id =>: ${req.params.id} has been successfully removed`
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
