@@ -28,6 +28,16 @@ User.hasMany(Post, {
   onDelete: "CASCADE",
 });
 
+Post.belongsTo(Neighborhood, {
+  foreignKey: "neighborhood_id",
+  onDelete: "SET NULL",
+});
+
+Neighborhood.hasMany(Post, {
+  foreignKey: "neighborhood_id",
+  onDelete: "SET NULL",
+});
+
 Comment.belongsTo(User, {
   foreignKey: "user_id",
   as: "commenter",
@@ -40,4 +50,14 @@ User.hasMany(Comment, {
   onDelete: "CASCADE",
 });
 
-module.exports = { User, Neighborhood, Post };
+Comment.belongsTo(Post, {
+  foreignKey: "post_id",
+  onDelete: "CASCADE",
+});
+
+Post.hasMany(Comment, {
+  foreignKey: "post_id",
+  onDelete: "CASCADE",
+});
+
+module.exports = { User, Neighborhood, Post, Comment };

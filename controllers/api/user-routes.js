@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { json } = require("body-parser");
-const { Comments, Neighborhood, Post, User } = require("../../models");
+const { Comment, Neighborhood, Post, User } = require("../../models");
 
 // The `/api/users` endpoint
 
@@ -14,17 +14,17 @@ router.get("/", (req, res) => {
     include: [
       // Including associated comments data
       {
-        models: Comments,
+        model: Comment,
         attributes: ["title"],
       },
       // Including associated neighborhood data
       {
-        models: Neighborhood,
+        model: Neighborhood,
         attributes: ["name"],
       },
       // Including associated post data
       {
-        models: Post,
+        model: Post,
         attributes: ["title"],
       },
     ],
@@ -44,7 +44,9 @@ router.get("/", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
 
+router.get("/uid/:id", (req, res) => {
   // Find user by ID
   User.findOne({
     where: {
@@ -56,17 +58,17 @@ router.get("/", (req, res) => {
     include: [
       // Including associated comments data
       {
-        models: Comments,
+        model: Comment,
         attributes: ["title"],
       },
       // Including associated neighborhood data
       {
-        models: Neighborhood,
+        model: Neighborhood,
         attributes: ["name"],
       },
       // Including associated post data
       {
-        models: Post,
+        model: Post,
         attributes: ["title"],
       },
     ],
@@ -91,98 +93,160 @@ router.get("/", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
 
-  // Create new User
-  router.post("/", (req, res) => {
-    // Create a new User
+// Create new User
+router.post("/", (req, res) => {
+  // Create a new User
 
-    "id", "email", "firstName", "lastName", "password", "neighborhood_id";
-    /* req.body will look like the following
+  "id", "email", "firstName", "lastName", "neighborhood_id";
+  /* req.body will look like the following
       {
         "email": "email goes here",
         "firstName": "firstName goes here",
         "lastName": "lastName goes here",
         "password": "password goes here",
-        "neighborhood_id": "neighborhood_id goes here",
+        "city": "user's city name goes here",
       }
     */
 
-    User.create(req.body, {
-      email: req.body.email,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      password: req.body.password,
-      neighborhood_id: req.body.neighborhood_id,
-    })
-      .then((databaseUserData) =>
-        res
-          .status(200)
-          .json(
-            `User ${req.body.firstName} ${req.body.lastName} has been successfully created!`
-          )
-      )
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
+  // user will enter the city name into the sign up form,
+  // then the server will check if a neighborhood with that name exists
+  // and if it does, assign the neighbohood id to the User.create body,
+  // or if it doesn't exist, then creating a neighborhood and assign its id to th User.create body
 
-  // Edit User
-  router.put("/:id", (req, res) => {
-    // Update a user by its id value
-    User.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    })
-      .then((databaseUserData) => {
-        if (!databaseUserData) {
-          res
-            .status(400)
-            .json(
-              `Sorry, No User with id =>: ${req.params.id} has been found! Please check your input and try again!`
-            );
-          return;
-        }
-        res.json(
-          `User with id =>: ${req.params.id} has been successfully changed to  `(
-            databaseUserData
-          )
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
+  Neighborhood.findOrCreate({
+    where: {
+      name: req.body.neighborhood,
+    },
+  })
+    .then((city) => {
+      console.log(city);
 
-  //Delete a User
-  router.delete("/:id", (req, res) => {
-    // Delete a user by its id value
-
-    User.destroy({
-      where: {
-        id: req.params.id,
-      },
-    })
-      .then((databaseUserData) => {
-        // Sending a status 404 message to the user if no user with the given id is found
-        if (!databaseUserData) {
-          res
-            .status(404)
-            .json(
-              `Sorry, No User with id ${req.params.id} has been found! Please check your input and try again!`
-            );
-          return;
-        }
-        res.json(
-          `User with id =>: ${req.params.id} has been successfully removed`
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
+      User.create({
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        password: req.body.password,
+        neighborhood_id: city[0].dataValues.id,
       });
-  });
+    })
+    .then((databaseUserData) =>
+      res
+        .status(200)
+        .json(
+          `User ${req.body.firstName} ${req.body.lastName} has been successfully created!`
+        )
+    )
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
+
+// Edit User
+router.put("/uid/:id", (req, res) => {
+  // Update a user by its id value
+  User.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((databaseUserData) => {
+      if (!databaseUserData) {
+        res
+          .status(400)
+          .json(
+            `Sorry, No User with id =>: ${req.params.id} has been found! Please check your input and try again!`
+          );
+        return;
+      }
+      res.json(
+        `User with id =>: ${
+          req.params.id
+        } has been successfully changed to  ${JSON.stringify(req.body)}`
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+//Delete a User
+router.delete("/uid/:id", (req, res) => {
+  // Delete a user by its id value
+
+  User.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((databaseUserData) => {
+      // Sending a status 404 message to the user if no user with the given id is found
+      if (!databaseUserData) {
+        res
+          .status(404)
+          .json(
+            `Sorry, No User with id ${req.params.id} has been found! Please check your input and try again!`
+          );
+        return;
+      }
+      res.json(
+        `User with id =>: ${req.params.id} has been successfully removed`
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// log user in and create new session with their user_id and neighborhood_id
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if (!user) {
+      res.status(401).send(`Incorrect Email or Password`);
+      return;
+    }
+
+    const auth = await user.checkPassword(req.body.password);
+
+    if (!auth) {
+      res.status(401).send(`Incorrect Email or Password`);
+      return;
+    }
+
+    req.session.regenerate((err) => {
+      req.session.save(() => {
+        req.session.loggedIn = true;
+        req.session.userId = user.id;
+        req.session.neighborhoodId = user.neighborhood_id;
+        console.log(req.session);
+
+        res.status(200).send(`User # ${user.id} logged in`);
+      });
+    });
+  } catch (err) {
+    if (err) throw err;
+  }
+});
+
+// log user out and clear session data
+router.post("/logout", async (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+    return;
+  }
+  res.status(404).end();
+});
+
 module.exports = router;
