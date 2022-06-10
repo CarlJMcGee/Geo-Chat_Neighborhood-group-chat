@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const { json } = require("body-parser");
-const { Comments, Neighborhood, Post, User } = require("../../models");
+const { Comment, Neighborhood, Post, User } = require("../../models");
 
 // The `/api/posts` endpoint
 
@@ -11,15 +10,25 @@ router.get("/", (req, res) => {
     attributes: ["id", "title", "content", "user_id"],
     // Including associated comments and neighborhood data
     include: [
+      // include original poster's data
+      {
+        model: User,
+        as: "OP",
+        attributes: {
+          exclude: ["password"],
+        },
+      },
       // Including associated comments data
       {
-        models: Comments,
+        model: Comment,
         attributes: ["title"],
-      },
-      // Including associated neighborhood data
-      {
-        models: Neighborhood,
-        attributes: ["name"],
+        include: {
+          model: User,
+          as: "commenter",
+          attributes: {
+            exclude: ["password"],
+          },
+        },
       },
     ],
   })
@@ -49,15 +58,25 @@ router.get("/:id", (req, res) => {
     attributes: ["id", "title", "content", "user_id"],
     // Including associated comments and neighborhood data
     include: [
+      // include original poster's data
+      {
+        model: User,
+        as: "OP",
+        attributes: {
+          exclude: ["password"],
+        },
+      },
       // Including associated comments data
       {
-        models: Comments,
+        model: Comment,
         attributes: ["title"],
-      },
-      // Including associated neighborhood data
-      {
-        models: Neighborhood,
-        attributes: ["name"],
+        include: {
+          model: User,
+          as: "commenter",
+          attributes: {
+            exclude: ["password"],
+          },
+        },
       },
     ],
   })
@@ -92,13 +111,16 @@ router.post("/", (req, res) => {
       {
         "title": "title goes here",
         "content": "content goes here",
-        "user_id": "user_id goes here",
+        "user_id": "user_id goes here" (enventually the user_id will be taken from the session data),
       }
     */
   Post.create(req.body, {
     title: req.body.title,
     content: req.body.content,
+    // eventually: user_id: req.session.userId
     user_id: req.body.user_id,
+    //eventually: neighborhood_id: req.session.nid
+    neighborhood_id: req.body.neighborhood_id,
   })
     .then((databasePostData) =>
       res
@@ -129,9 +151,9 @@ router.put("/:id", (req, res) => {
         return;
       }
       res.json(
-        `post with id =>: ${req.params.id} has been successfully changed to  `(
-          databasePostData
-        )
+        `post with id =>: ${
+          req.params.id
+        } has been successfully changed to  ${JSON.stringify(req.body)}`
       );
     })
     .catch((err) => {

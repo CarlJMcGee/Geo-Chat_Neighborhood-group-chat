@@ -1,22 +1,16 @@
 const router = require("express").Router();
 const { json } = require("body-parser");
-const { Comments, Neighborhood, Post, User } = require("../../models");
+const { Comment, Neighborhood, Post, User } = require("../../models");
 
 // The `/api/comments` endpoint
 
 // get all comments
 router.get("/", (req, res) => {
   // find all comments
-  Comments.findAll({
+  Comment.findAll({
     attributes: ["id", "title", "content", "user_id"],
     // Including its associated neighborhood and post data
     include: [
-      // Including associated neighborhood data
-      {
-        models: Neighborhood,
-        attributes: ["name"],
-      },
-
       // Including associated post data
       {
         model: Post,
@@ -35,7 +29,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   // find a single comment by its `id`
   // Including its associated neighborhood and Comment data
-  Comments.findOne({
+  Comment.findOne({
     where: {
       id: req.params.id,
     },
@@ -43,12 +37,6 @@ router.get("/:id", (req, res) => {
     attributes: ["id", "title", "content", "user_id"],
     // Including its associated neighborhood and post data
     include: [
-      // Including associated neighborhood data
-      {
-        models: Neighborhood,
-        attributes: ["name"],
-      },
-
       // Including associated post data
       {
         model: Post,
@@ -90,10 +78,12 @@ router.post("/", (req, res) => {
         "user_id": "user_id goes here",
       }
     */
-  Comments.create(req.body, {
+  Comment.create({
     title: req.body.title,
     content: req.body.content,
+    // eventually: user_id: req.session.userId
     user_id: req.body.user_id,
+    post_id: req.body.post_id,
   })
     .then((databaseNeighborhoodData) =>
       res
@@ -111,7 +101,7 @@ router.post("/", (req, res) => {
 // Edit Comment
 router.put("/:id", (req, res) => {
   // Update a comment by its id value
-  Comments.update(req.body, {
+  Comment.update(req.body, {
     where: {
       id: req.params.id,
     },
@@ -126,9 +116,9 @@ router.put("/:id", (req, res) => {
         return;
       }
       res.json(
-        `Comment with id =>: ${req.params.id} has been successfully changed to `(
-          databaseCommentsData
-        )
+        `Comment with id =>: ${
+          req.params.id
+        } has been successfully changed to ${JSON.stringify(req.body)}`
       );
     })
     .catch((err) => {
@@ -141,7 +131,7 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
   // Delete a comment by its id value
 
-  Comments.destroy({
+  Comment.destroy({
     where: {
       id: req.params.id,
     },

@@ -8,7 +8,7 @@ const { Comment, Neighborhood, Post, User } = require("../../models");
 router.get("/", (req, res) => {
   // find all users
   User.findAll({
-    attributes: ["id", "email", "firstName", "lastName", "neighborhood_id"],
+    attributes: ["id", "email", "firstName", "lastName"],
 
     // Including associated comments, neighborhood and post data
     include: [
@@ -99,7 +99,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   // Create a new User
 
-  "id", "email", "firstName", "lastName", "password", "neighborhood_id";
+  "id", "email", "firstName", "lastName", "neighborhood_id";
   /* req.body will look like the following
       {
         "email": "email goes here",
@@ -162,9 +162,9 @@ router.put("/:id", (req, res) => {
         return;
       }
       res.json(
-        `User with id =>: ${req.params.id} has been successfully changed to  `(
-          databaseUserData
-        )
+        `User with id =>: ${
+          req.params.id
+        } has been successfully changed to  ${JSON.stringify(req.body)}`
       );
     })
     .catch((err) => {
