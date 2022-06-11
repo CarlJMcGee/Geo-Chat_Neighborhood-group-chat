@@ -1,37 +1,76 @@
+<div id="log-in">
+  <h2>Enter your information below to create an account</h2>
+  <form class="signup_form">
+    <div class="form-group">
+      <label for="username_signup">Full Name:</label>
+      <input
+        type="text"
+        id="username_signup"
+        class="form-control"
+        placeholder="eg. John Smith"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="email_signup">Email:</label>
+      <input
+        type="text"
+        id="email_signup"
+        placeholder="eg. JSmith@example.com"
+        required
+      />
+      <label for="email_signup">Confirm Email:</label>
+      <input
+        type="text"
+        id="email_signup"
+        placeholder="eg. JSmith@example.com"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password:</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="OOOGABOOGA55409"
+        required
+      />
+      <label for="exampleInputPassword1">Confirm Password:</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="OOOGABOOGA55409"
+        required
+      />
+    </div>
+    <div>
+      <p>Address</p>
+      <label for="address">Address Line 1:</label>
+      <input
+        type="text"
+        id="address"
+        placeholder="eg. 123 Anywhere Ave"
+        required
+      /><br />
+      <label for="address">Address Line 2:</label>
+      <input type="text" id="address" placeholder="eg. 123 Anywhere Ave" /><br
+      />
+      <label for="address">City:</label>
+      <input type="text" id="city" placeholder="eg. Seattle" required /><br />
+      <label for="address">State:</label>
+      <input
+        type="text"
+        id="address"
+        placeholder="eg. Washington"
+        required
+      /><br />
+      <label for="addresss">Zip Code:</label>
+      <input type="text" id="address" placeholder="eg. 90210" required />
+    </div>
 
-     <div id="log-in">
-          <h2>Enter your information below to create an account</h2>
-          <form class="signup_form">
-            <div class="form-group">
-                <label for="username_signup">Full Name:</label>
-                <input type="text" id="username_signup" class="form-control" placeholder="eg. John Smith" required/>
-              </div>
-              <div class="form-group">
-                <label for="email_signup">Email:</label>
-                <input type="text" id="email_signup" placeholder="eg. JSmith@example.com" required/>
-                <label for="email_signup">Confirm Email:</label>
-                <input type="text" id="email_signup" placeholder="eg. JSmith@example.com" required/>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password:</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="OOOGABOOGA55409" required>
-                <label for="exampleInputPassword1">Confirm Password:</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="OOOGABOOGA55409" required>
-              </div>
-              <div>
-                <p>Address</p>
-                <label for="address">Address Line 1:</label>
-                <input type="text" id="address" placeholder="eg. 123 Anywhere Ave" required><br>
-                <label for="address">Address Line 2:</label>
-                <input type="text" id="address" placeholder="eg. 123 Anywhere Ave" required><br>
-                <label for="address">City:</label>
-                <input type="text" id="address" placeholder="eg. Seattle" required><br>
-                <label for="address">State:</label>
-                <input type="text" id="address" placeholder="eg. Washington" required><br>
-                <label for="addresss">Zip Code:</label>
-                <input type="text" id="address" placeholder="eg. 90210" required>
-              </div>
-       
-            <button type="submit" class="btn btn-primary">Submit!</button>
-          </form>
-        </div>
+    <button type="submit" class="btn btn-primary">Submit!</button>
+  </form>
+</div>
+<script src="./javascript/login.js"></script>

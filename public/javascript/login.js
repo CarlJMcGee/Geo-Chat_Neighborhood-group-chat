@@ -32,34 +32,41 @@ async function signUpFormHandler(event) {
     .value.trim()
     .split(" ");
   const firstName = fullName[0];
-  const lastName = fullName[1];
-  const email = document.querySelector("#log-in").value.trim();
+  const lastName = fullName[fullName.length - 1];
+  const email = document.querySelector("#email_signup").value.trim();
   const password = document
     .querySelector("#exampleInputPassword1")
     .value.trim();
+  const neighbohood = document.querySelector("#city").value.trim();
 
-  if (username && email && password) {
-    const response = await fetch("/api/user", {
+  if (fullName && email && password) {
+    const response = await fetch("/api/users", {
       method: "post",
       body: JSON.stringify({
-        username,
-        email,
-        password,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        neighborhood: neighbohood,
       }),
       headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      // document.location.replace("/");
+      console.log(response);
     } else {
       alert(response.statusText);
     }
   }
 }
-document
-  .querySelector(".login-form")
-  .addEventListener("submit", loginFormHandler);
+const loginForm = document.querySelector(".login-form");
+const signupForm = document.querySelector(".signup_form");
 
-document
-  .querySelector(".signup-form")
-  .addEventListener("submit", signUpFormHandler);
+if (loginForm) {
+  loginForm.addEventListener("submit", loginFormHandler);
+}
+
+if (signupForm) {
+  signupForm.addEventListener("submit", signUpFormHandler);
+}
