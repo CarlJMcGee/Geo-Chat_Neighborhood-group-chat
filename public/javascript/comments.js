@@ -1,4 +1,4 @@
-const comment_text = document.querySelector('textarea [name="comment-body"]').ariaValueMax.trim();
+const comment_text = document.querySelector('textarea [name="comment-body"]').value.trim();
 
 const post_id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
@@ -6,7 +6,7 @@ const post_id = window.location.toString().split('/')[
 
 if (comment_text) {
     // need api 
-    const response = await fetch('/api/', {
+    const response = await fetch('/api/comments/', {
         method: 'POST',
         body: JSON.stringify({
             post_id,
