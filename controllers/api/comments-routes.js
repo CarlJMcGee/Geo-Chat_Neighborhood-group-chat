@@ -8,7 +8,7 @@ const { Comment, Neighborhood, Post, User } = require("../../models");
 router.get("/", (req, res) => {
   // find all comments
   Comment.findAll({
-    attributes: ["id", "title", "content", "user_id"],
+    attributes: ["id", "content", "user_id"],
     // Including its associated neighborhood and post data
     include: [
       // Including associated post data
@@ -34,7 +34,7 @@ router.get("/:id", (req, res) => {
       id: req.params.id,
     },
 
-    attributes: ["id", "title", "content", "user_id"],
+    attributes: ["id", "content", "user_id"],
     // Including its associated neighborhood and post data
     include: [
       // Including associated post data
@@ -70,26 +70,23 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   // Create a new comment
 
-  "id", "title", "content", "user_id";
+  "id", "content", "user_id";
   /* req.body will look like the following
       {
-        "title": "title goes here",
         "content": "content goes here",
         "user_id": "user_id goes here",
       }
     */
   Comment.create({
-    title: req.body.title,
     content: req.body.content,
-    // eventually: user_id: req.session.userId
-    user_id: req.body.user_id,
+    user_id: req.session.userId,
     post_id: req.body.post_id,
   })
     .then((databaseNeighborhoodData) =>
       res
         .status(200)
         .json(
-          `Comments with title ${req.body.title} has been successfully created!`
+          `Comment with id ${databaseNeighborhoodData.id} has been successfully created!`
         )
     )
     .catch((err) => {

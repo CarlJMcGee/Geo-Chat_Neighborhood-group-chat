@@ -11,13 +11,6 @@ Comment.init(
       allowNull: false,
       autoIncrement: true,
     },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1],
-      },
-    },
     content: {
       type: DataTypes.TEXT,
       allowNull: false,
