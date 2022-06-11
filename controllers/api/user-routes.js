@@ -121,8 +121,6 @@ router.post("/", (req, res) => {
     },
   })
     .then((city) => {
-      console.log(city);
-
       User.create({
         email: req.body.email,
         firstName: req.body.firstName,
