@@ -34,12 +34,28 @@ async function signUpFormHandler(event) {
   const firstName = fullName[0];
   const lastName = fullName[fullName.length - 1];
   const email = document.querySelector("#email_signup").value.trim();
+  const emailVerf = document.querySelector("#email_signup_verf").value.trim();
   const password = document
     .querySelector("#exampleInputPassword1")
+    .value.trim();
+  const passwordVerf = document
+    .querySelector("#exampleInputPassword1-verf")
     .value.trim();
   const neighbohood = document.querySelector("#city").value.trim();
 
   if (fullName && email && password) {
+    if (email !== emailVerf && password !== passwordVerf) {
+      window.alert("Email and Password Do Not Match Respective Confirm Fields");
+      return;
+    }
+    if (email !== emailVerf) {
+      window.alert("Emails Do Not Match");
+      return;
+    }
+    if (password !== passwordVerf) {
+      window.alert("Passwords Do Not Match");
+      return;
+    }
     const response = await fetch("/api/users", {
       method: "post",
       body: JSON.stringify({
@@ -53,8 +69,7 @@ async function signUpFormHandler(event) {
     });
 
     if (response.ok) {
-      // document.location.replace("/");
-      console.log(response);
+      document.location.replace("/");
     } else {
       alert(response.statusText);
     }

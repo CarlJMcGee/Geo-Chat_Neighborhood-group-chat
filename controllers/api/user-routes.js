@@ -117,7 +117,7 @@ router.post("/", (req, res) => {
 
   Neighborhood.findOrCreate({
     where: {
-      name: req.body.neighborhood,
+      name: req.body.neighborhood.toLowerCase(),
     },
   })
     .then((city) => {
