@@ -15,16 +15,23 @@
     ></script>
     <link rel="stylesheet" type="text/css" href="./stylesheets/style.css" />
   </head>
-<body>
+  <body>
     <div>
-        <header class="left">
-            <h1 >GeoCHAT</h1>
-            <h5>Connecting one neighborhood at a time</h5>
-           
-        </header>
-    <a href="/"> Main</a>  
+      <header class="left">
+        <h1>GeoCHAT</h1>
+        <h5>Connecting one neighborhood at a time</h5>
+
+      </header>
+      <a href="/"> Main</a>
+      {{#if loggedIn}}
+        <a href="" id="log-out">Logout</a>
+      {{/if}}
     </div>
     {{{body}}}
+
+    {{#if loggedIn}}
+      <script src="./javascript/logout.js"></script>
+    {{/if}}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
