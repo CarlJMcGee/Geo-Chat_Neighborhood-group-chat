@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
       // Including associated comments data
       {
         model: Comment,
-        attributes: ["title"],
+        attributes: ["content"],
         include: {
           model: User,
           as: "commenter",
@@ -69,7 +69,7 @@ router.get("/:id", (req, res) => {
       // Including associated comments data
       {
         model: Comment,
-        attributes: ["title"],
+        attributes: ["content"],
         include: {
           model: User,
           as: "commenter",

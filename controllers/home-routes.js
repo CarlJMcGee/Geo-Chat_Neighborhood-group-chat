@@ -1,6 +1,19 @@
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
+router.use("//", (req, res, next) => {
+  res.redirect("/homepage");
+  return;
+});
+
+router.use("/homepage", (req, res, next) => {
+  if (req.session.loggedIn) {
+    res.redirect("/dashboard");
+    return;
+  }
+  next();
+});
+
+router.get("/homepage", (req, res) => {
   res.render("homepage");
 });
 

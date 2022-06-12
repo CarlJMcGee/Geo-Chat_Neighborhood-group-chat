@@ -12,11 +12,6 @@ router.get("/", (req, res) => {
 
     // Including associated comments, neighborhood and post data
     include: [
-      // Including associated comments data
-      {
-        model: Comment,
-        attributes: ["title"],
-      },
       // Including associated neighborhood data
       {
         model: Neighborhood,
@@ -26,6 +21,11 @@ router.get("/", (req, res) => {
       {
         model: Post,
         attributes: ["title"],
+      },
+      // Including associated comments data
+      {
+        model: Comment,
+        attributes: ["content"],
       },
     ],
   })
@@ -56,11 +56,6 @@ router.get("/uid/:id", (req, res) => {
 
     // Including associated comments, neighborhood and post data
     include: [
-      // Including associated comments data
-      {
-        model: Comment,
-        attributes: ["title"],
-      },
       // Including associated neighborhood data
       {
         model: Neighborhood,
@@ -70,6 +65,11 @@ router.get("/uid/:id", (req, res) => {
       {
         model: Post,
         attributes: ["title"],
+      },
+      // Including associated comments data
+      {
+        model: Comment,
+        attributes: ["content"],
       },
     ],
   })
