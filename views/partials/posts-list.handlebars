@@ -1,15 +1,16 @@
 <article>
-  <h3>Latest Posts</h3>
+  <h3>Latest Posts in {{neighborhood}}:</h3>
+  <br />
   {{#each posts}}
     <div>
       <div>
-        <h3>{{title}}</h3>
-        <p>{{content}}</p>
+        <a href="/post/{{dataValues.id}}"><h3>{{dataValues.title}}</h3></a>
+        <h4>{{OP.dataValues.firstName}} {{OP.dataValues.lastName}}</h4>
+        <p>{{dataValues.content}}</p>
       </div>
-      <br />
       <div>
-        {{#each comment}}
-          <p>{{content}}</p>
+        {{#each comments}}
+          <p>{{dataValues.content}}</p>
         {{/each}}
       </div>
     </div>

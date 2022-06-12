@@ -1,0 +1,14 @@
+<section>
+  <div>
+    <h3>{{post.dataValues.title}}</h3>
+    <p>{{post.dataValues.content}}</p>
+  </div>
+  <br />
+  {{#each post.comments}}
+    <div>
+      <h4>{{commenter.dataValues.firstName}}
+        {{commenter.dataValues.lastName}}</h4>
+      <p>{{dataValues.content}}</p>
+    </div>
+  {{/each}}
+</section>
