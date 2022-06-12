@@ -1,0 +1,18 @@
+<article>
+  <h3>Latest Posts in {{neighborhood}}:</h3>
+  <br />
+  {{#each posts}}
+    <div>
+      <div>
+        <a href="/post/{{dataValues.id}}"><h3>{{dataValues.title}}</h3></a>
+        <h4>{{OP.dataValues.firstName}} {{OP.dataValues.lastName}}</h4>
+        <p>{{dataValues.content}}</p>
+      </div>
+      <div>
+        {{#each comments}}
+          <p>{{dataValues.content}}</p>
+        {{/each}}
+      </div>
+    </div>
+  {{/each}}
+</article>
