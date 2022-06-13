@@ -70,8 +70,6 @@ router.get("/dashboard", async (req, res) => {
 
   const neighborhood = neighborhoodData.dataValues.name.toUpperCase();
 
-  console.log(posts[0]);
-
   res.render("dashboard", {
     loggedIn: req.session.loggedIn,
     posts: posts,
@@ -101,10 +99,14 @@ router.get("/post/:id", async (req, res) => {
       },
     ],
   });
+  const user = await User.findByPk(req.session.userId);
+  const isOP = () =>
+    post.dataValues.user_id === user.dataValues.id ? true : false;
 
   res.render("post", {
     loggedIn: req.session.loggedIn,
     post: post,
+    isOP: isOP,
   });
 });
 
@@ -133,6 +135,8 @@ router.get("/post/:id/edit", async (req, res) => {
   });
 
   const post = postData.get({ plain: true });
+
+  console.log(post);
 
   if (req.session.userId !== post.OP.id) {
     res.status(401).redirect("/");
