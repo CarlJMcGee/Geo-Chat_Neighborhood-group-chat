@@ -120,22 +120,32 @@ router.post("/", (req, res) => {
       name: req.body.neighborhood.toLowerCase(),
     },
   })
-    .then((city) => {
+    .then((city) =>
       User.create({
         email: req.body.email,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         password: req.body.password,
         neighborhood_id: city[0].dataValues.id,
+      })
+    )
+    .then((databaseUserData) => {
+      const user = databaseUserData.get({ plain: true });
+
+      req.session.regenerate((err) => {
+        req.session.save(() => {
+          req.session.loggedIn = true;
+          req.session.userId = user.id;
+          req.session.neighborhoodId = user.neighborhood_id;
+
+          res
+            .status(200)
+            .json(
+              `User ${req.body.firstName} ${req.body.lastName} has been successfully created!`
+            );
+        });
       });
     })
-    .then((databaseUserData) =>
-      res
-        .status(200)
-        .json(
-          `User ${req.body.firstName} ${req.body.lastName} has been successfully created!`
-        )
-    )
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -226,7 +236,6 @@ router.post("/login", async (req, res) => {
         req.session.loggedIn = true;
         req.session.userId = user.id;
         req.session.neighborhoodId = user.neighborhood_id;
-        console.log(req.session);
 
         res.status(200).send(`User # ${user.id} logged in`);
       });

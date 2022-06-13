@@ -108,6 +108,43 @@ router.get("/post/:id", async (req, res) => {
   });
 });
 
+router.get("/post/:id/edit", async (req, res) => {
+  const postData = await Post.findByPk(req.params.id, {
+    include: [
+      {
+        model: User,
+        as: "OP",
+        attributes: {
+          exclude: ["password"],
+        },
+      },
+      {
+        model: Comment,
+        order: [["id", "DESC"]],
+        include: {
+          model: User,
+          as: "commenter",
+          attributes: {
+            exclude: ["password"],
+          },
+        },
+      },
+    ],
+  });
+
+  const post = postData.get({ plain: true });
+
+  if (req.session.userId !== post.OP.id) {
+    res.status(401).send("User not Original Poster");
+    return;
+  }
+
+  res.render("edit-post", {
+    loggedIn: req.session.loggedIn,
+    post: post,
+  });
+});
+
 router.get("/login", (req, res) => {
   res.render("login");
 });

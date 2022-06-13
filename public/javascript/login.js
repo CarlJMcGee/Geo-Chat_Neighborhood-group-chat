@@ -68,24 +68,9 @@ async function signUpFormHandler(event) {
       headers: { "Content-Type": "application/json" },
     });
 
-    if (response.ok) {
-      const user = await fetch("/api/users/login", {
-        method: "post",
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      if (user.ok) {
-        document.location.replace("/dashboard");
-      } else {
-        alert(response);
-      }
-    } else {
-      alert(response.statusText);
-    }
+    if (response.ok) document.location.replace("/dashboard");
+  } else {
+    alert(response.statusText);
   }
 }
 const loginForm = document.querySelector(".login-form");
