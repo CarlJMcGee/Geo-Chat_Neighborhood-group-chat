@@ -135,7 +135,7 @@ router.get("/post/:id/edit", async (req, res) => {
   const post = postData.get({ plain: true });
 
   if (req.session.userId !== post.OP.id) {
-    res.status(401).send("User not Original Poster");
+    res.status(401).redirect("/");
     return;
   }
 
