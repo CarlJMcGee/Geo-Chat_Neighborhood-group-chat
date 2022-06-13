@@ -8,7 +8,7 @@
   {{#each post.comments}}
     <div>
       <h4>{{commenter.dataValues.firstName}}
-        {{commenter.dataValues.lastName}}</h4>
+        {{commenter.dataValues.lastName}} {{#if isCommenter}}<span><a href="/comment/{{dataValues.id}}/edit">Edit</a></span>{{/if}}</h4>
       <p>{{dataValues.content}}</p>
     </div>
   {{/each}}

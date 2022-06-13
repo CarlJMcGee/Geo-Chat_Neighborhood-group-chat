@@ -12,7 +12,6 @@ const commentFormHandler = async (e) => {
   ];
 
   if (post_text) {
-    // need api
     const response = await fetch(`/api/posts/${post_id}`, {
       method: "PUT",
       body: JSON.stringify({
