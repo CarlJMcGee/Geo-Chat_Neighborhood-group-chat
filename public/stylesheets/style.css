@@ -49,6 +49,7 @@ body {
 .left {
     background-color: #1C394A;
     color:#C7DAE5;
+    border-bottom: 5px solid #517990;
 }
 .left h1 {
     font-weight: bolder;
@@ -56,6 +57,11 @@ body {
 }
 .left h5 {
     display: inline-block;
+}
+.nav {
+    position: absolute;
+    display: inline-block;
+    left: 90%;
 }
 /*login page*/
 #log-in {
@@ -84,19 +90,58 @@ body {
       border: 1px solid #C7DAE5;
       border-bottom: 3px solid #517990; }
   
-      #address {
-          display: inline-block;
-      }
+    
 
 /*sign up sheet*/
 input {
     margin: 5px;
     font-display: #1C394A;
+    width: 30%;
 }
 p {
     font-weight: bolder;
+    font-size: larger;
     margin:7px;
     text-decoration: underline;
 }
-
+.address input {
+    width: 98%;
+    display:block;
+    border: 1px solid #1C394A;
+    color: #C7DAE5;
+    padding: 5px;
+    background-color: #1C394A;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    -ms-border-radius: 11px;
+    border-radius: 5px;
+}
+.email input{
+    width: 30%;
+    border: 1px solid #1C394A;
+    color: #C7DAE5;
+    padding: 5px;
+    background-color: #1C394A;
+    border-radius: 5px;
+}
 /*dashboard*/
+h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 15px;
+    
+}
+
+.search {
+    padding-right: 5px;
+    width: 75%;
+}
+.box {
+    color: #C7DAE5;
+    background-color: #1C394A;
+    padding: 50px;
+    border: solid 5px;
+    border-color: #517990;
+    position: absolute;
+    left: 35%;
+    
+}
