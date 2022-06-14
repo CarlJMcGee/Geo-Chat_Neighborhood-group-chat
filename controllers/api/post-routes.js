@@ -114,13 +114,11 @@ router.post("/", (req, res) => {
         "user_id": "user_id goes here" (enventually the user_id will be taken from the session data),
       }
     */
-  Post.create(req.body, {
+  Post.create({
     title: req.body.title,
     content: req.body.content,
-    // eventually: user_id: req.session.userId
-    user_id: req.body.user_id,
-    //eventually: neighborhood_id: req.session.nid
-    neighborhood_id: req.body.neighborhood_id,
+    user_id: req.session.userId,
+    neighborhood_id: req.session.neighborhoodId,
   })
     .then((databasePostData) =>
       res

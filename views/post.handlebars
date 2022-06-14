@@ -5,6 +5,7 @@
     <p>{{post.dataValues.content}}</p>
   </div>
   <br />
+  <a href="/post/{{post.dataValues.id}}/comment">New Comment</a>
   {{#each post.comments}}
     <div>
       <h4>{{commenter.dataValues.firstName}}
