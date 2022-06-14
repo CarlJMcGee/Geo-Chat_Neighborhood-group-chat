@@ -26,6 +26,7 @@ body {
 .square {
     color: #C7DAE5;
     background-color: #1C394A;
+    padding: 50px;
     border: solid 5px;
     border-color: #517990;
     position: absolute;
@@ -34,12 +35,13 @@ body {
 }
 .square a {
     position: relative;
-    left: 35%;
+    left: 25%;
     background-color: #C7DAE5;
 }
 .square h2 {
     position: relative;
-    left: 25%;
+    left: 5%;
+    padding: 30px;
 }
 .form-control {
     background-color: #C7DAE5;

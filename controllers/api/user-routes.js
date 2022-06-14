@@ -137,7 +137,7 @@ router.post("/", (req, res) => {
           req.session.loggedIn = true;
           req.session.userId = user.id;
           req.session.neighborhoodId = user.neighborhood_id;
-
+            console.log(req.session);
           res
             .status(200)
             .json(
