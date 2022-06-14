@@ -28,6 +28,25 @@ const commentFormHandler = async (e) => {
       alert(response.statusText);
     }
   }
+
+  if (post_text) {
+    const response = await fetch(`/api/posts/${post_id}`, {
+      method: "POST",
+      body: JSON.stringify({
+        title: post_title,
+        content: post_text,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    
+    if (response.ok) {
+      document.location.replace(`/post/${post_id}`);
+    } else {
+      alert(response.statusText);
+    }
+  }
 };
 
 document
