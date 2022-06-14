@@ -123,11 +123,13 @@ router.get("/post/:id", async (req, res) => {
     post.dataValues.user_id === req.session.userId ? true : false;
 
   // check each comment to see if user created any of them
-  post.comments.map((comment) => {
-    comment.dataValues.user_id === req.session.userId
-      ? (comment.isCommenter = true)
-      : (comment.isCommenter = false);
-  });
+  if (post.comments) {
+    post.comments.map((comment) => {
+      comment.dataValues.user_id === req.session.userId
+        ? (comment.isCommenter = true)
+        : (comment.isCommenter = false);
+    });
+  }
 
   res.render("post", {
     loggedIn: req.session.loggedIn,
@@ -162,6 +164,11 @@ router.get("/post/:id/edit", async (req, res) => {
     loggedIn: req.session.loggedIn,
     post: post,
   });
+});
+
+// page to create and post a new comment
+router.get("/post/:id/comment", async (req, res) => {
+  res.render("create-comment");
 });
 
 // page to edit comments
