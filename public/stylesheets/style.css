@@ -144,28 +144,30 @@ h4 {
     border-color: #517990;
     width: 100%;
 }
-
+/*create-post hbs*/
 .post {
     color: #C7DAE5;
     background-color: #1C394A;
     width: 100%;
     height: 40%;
-    padding-left: 5px;
+    padding-left: 3px;
     border: solid 5px #517990; 
     
 }
 .createpost {
     background-color: white;
-    width: 120%;
+    width: 90%;
     height: 60%;
-    position: relative;
-    left: 15%;
 }
 .post button {
-    position: absolute;
-    left: 40%;
+    position: relative;
+    right: 0%;
+    bottom: 0%;
+
 }
 #post-feed {
-    position: absolute;
-    
+    position: absolute;  
+}
+.post input {
+    display: inline-block;
 }
