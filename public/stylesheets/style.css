@@ -85,3 +85,16 @@ body {
       #address {
           display: inline-block;
       }
+
+/*sign up sheet*/
+input {
+    margin: 5px;
+    font-display: #1C394A;
+}
+p {
+    font-weight: bolder;
+    margin:7px;
+    text-decoration: underline;
+}
+
+/*dashboard*/
