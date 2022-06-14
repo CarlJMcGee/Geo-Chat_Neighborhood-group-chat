@@ -138,6 +138,11 @@ router.get("/post/:id", async (req, res) => {
   });
 });
 
+// page to create new post
+router.get("/new-post/", (req, res) => {
+  res.render("create-post");
+});
+
 // page to edit post title or content. If user did not create post, they will be redirected to the homepage
 router.get("/post/:id/edit", async (req, res) => {
   const postData = await Post.findByPk(req.params.id, {

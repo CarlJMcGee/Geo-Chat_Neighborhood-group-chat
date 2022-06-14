@@ -14,7 +14,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    {{! <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> }}
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <div>
@@ -23,8 +23,7 @@
         <h5>Connecting one neighborhood at a time</h5>
 
       </header>
-      <a href="/">Logout</a>
-      <a href="views/dashboard.handlebars">Dashboard</a>
+      <a href="/dashboard">Dashboard</a>
       {{#if loggedIn}}
         <a href="" id="log-out">Logout</a>
       {{/if}}

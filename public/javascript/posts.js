@@ -1,4 +1,4 @@
-const commentFormHandler = async (e) => {
+const editPostFormHandler = async (e) => {
   e.preventDefault();
 
   const post_text = document
@@ -7,9 +7,9 @@ const commentFormHandler = async (e) => {
 
   const post_title = document.querySelector("#title-edit").value.trim();
 
-  // const post_id = window.location.toString().split("/")[
-  //   window.location.toString().split("/").length - 2
-  // ];
+  const post_id = window.location.toString().split("/")[
+    window.location.toString().split("/").length - 2
+  ];
 
   if (post_text) {
     const response = await fetch(`/api/posts/${post_id}`, {
@@ -28,6 +28,16 @@ const commentFormHandler = async (e) => {
       alert(response.statusText);
     }
   }
+};
+
+const newPostFormHandler = async (e) => {
+  e.preventDefault();
+
+  const post_text = document
+    .querySelector('textarea[name="post-body"]')
+    .value.trim();
+
+  const post_title = document.querySelector("#title-create").value.trim();
 
   if (post_text) {
     const response = await fetch(`/api/posts/`, {
@@ -42,13 +52,21 @@ const commentFormHandler = async (e) => {
     });
 
     if (response.ok) {
-      document.location.replace(`/post/`);
+      document.location.replace(`/dashboard`);
     } else {
       alert(response.statusText);
     }
   }
 };
 
-document
-  .querySelector("#edit-post-form")
-  .addEventListener("submit", commentFormHandler);
+if (document.querySelector("#edit-post-form")) {
+  document
+    .querySelector("#edit-post-form")
+    .addEventListener("submit", editPostFormHandler);
+}
+
+if (document.querySelector("#create-post-form")) {
+  document
+    .querySelector("#create-post-form")
+    .addEventListener("submit", newPostFormHandler);
+}
