@@ -86,7 +86,7 @@ body {
       background-color: #C7DAE5;
       border: 1px solid #C7DAE5; }
     #log-in input:focus {
-      color: #EAE8D4;
+      color: #020202;
       background-color: #C7DAE5;
       border: 1px solid #C7DAE5;
       border-bottom: 3px solid #517990; }
@@ -109,7 +109,7 @@ p {
     width: 98%;
     display:block;
     border: 1px solid #1C394A;
-    color: #C7DAE5;
+    color: #070707;
     padding: 5px;
     background-color: #1C394A;
     -webkit-border-radius: 11px;
@@ -120,7 +120,7 @@ p {
 .email input{
     width: 30%;
     border: 1px solid #1C394A;
-    color: #C7DAE5;
+    color: #050606;
     padding: 5px;
     background-color: #1C394A;
     border-radius: 5px;
