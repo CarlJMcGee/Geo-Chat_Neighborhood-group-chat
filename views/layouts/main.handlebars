@@ -21,12 +21,14 @@
       <header class="left">
         <h1>GeoCHAT</h1>
         <h5>Connecting one neighborhood at a time</h5>
-
-      </header>
-      <a href="/dashboard">Dashboard</a>
+          <div class="nav">
+             <a href="/dashboard">Homepage</a> <!-- AKA dashboard-->
       {{#if loggedIn}}
         <a href="" id="log-out">Logout</a>
       {{/if}}
+      </div>
+      </header>
+    
     </div>
     {{{body}}}
 

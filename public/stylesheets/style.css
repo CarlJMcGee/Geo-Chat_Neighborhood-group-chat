@@ -16,13 +16,13 @@ body {
 
 .btn {
     background-color: #c7dac7;
-    border-radius: 12px;
+    border-radius: 10px;
     font-weight: bolder;
-    padding: 12px 28px;
+    padding: 10px 25px;
     display: inline-block;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-/*main page*/
+/*homepage*/
 .square {
     color: #C7DAE5;
     background-color: #1C394A;
@@ -49,6 +49,7 @@ body {
 .left {
     background-color: #1C394A;
     color:#C7DAE5;
+    border-bottom: 5px solid #517990;
 }
 .left h1 {
     font-weight: bolder;
@@ -57,6 +58,12 @@ body {
 .left h5 {
     display: inline-block;
 }
+.nav {
+    position: absolute;
+    display: inline-block;
+    left: 90%;
+}
+
 /*login page*/
 #log-in {
     border: 1px solid #1C394A;
@@ -84,19 +91,83 @@ body {
       border: 1px solid #C7DAE5;
       border-bottom: 3px solid #517990; }
   
-      #address {
-          display: inline-block;
-      }
+    
 
 /*sign up sheet*/
 input {
     margin: 5px;
     font-display: #1C394A;
+    width: 30%;
 }
 p {
     font-weight: bolder;
+    font-size: larger;
     margin:7px;
     text-decoration: underline;
 }
-
+.address input {
+    width: 98%;
+    display:block;
+    border: 1px solid #1C394A;
+    color: #C7DAE5;
+    padding: 5px;
+    background-color: #1C394A;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    -ms-border-radius: 11px;
+    border-radius: 5px;
+}
+.email input{
+    width: 30%;
+    border: 1px solid #1C394A;
+    color: #C7DAE5;
+    padding: 5px;
+    background-color: #1C394A;
+    border-radius: 5px;
+}
 /*dashboard*/
+h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 15px;
+    
+}
+
+.search {
+    padding-right: 5px;
+    width: 75%;
+}
+#box {
+    color: #C7DAE5;
+    background-color: #1C394A;
+    padding: 50px;
+    border: solid 5px;
+    border-color: #517990;
+    width: 100%;
+}
+/*create-post hbs*/
+.post {
+    color: #C7DAE5;
+    background-color: #1C394A;
+    width: 100%;
+    height: 40%;
+    padding-left: 3px;
+    border: solid 5px #517990; 
+    
+}
+.createpost {
+    background-color: white;
+    width: 90%;
+    height: 60%;
+}
+.post button {
+    position: relative;
+    right: 0%;
+    bottom: 0%;
+
+}
+#post-feed {
+    position: absolute;  
+}
+.post input {
+    display: inline-block;
+}
