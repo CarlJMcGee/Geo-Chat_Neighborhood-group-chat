@@ -69,7 +69,7 @@ router.get("/dashboard", async (req, res) => {
         },
         limit: 3,
         separate: true,
-        order: [["id", "DESC"]],
+        order: [["id", "ASC"]],
       },
     ],
     // organize posts from newest to oldest
@@ -113,7 +113,8 @@ router.get("/post/:id", async (req, res) => {
             exclude: ["password"],
           },
         },
-        order: [["id", "DESC"]],
+        separate: true,
+        order: [["id", "ASC"]],
       },
     ],
   });

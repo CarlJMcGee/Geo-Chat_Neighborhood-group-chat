@@ -4,6 +4,7 @@
   <br />
   <br />
   {{#each posts}}
+    <br />
     <div>
       <div>
         <a href="/post/{{dataValues.id}}"><h3>{{dataValues.title}}</h3></a>
@@ -11,11 +12,15 @@
         <p>{{dataValues.content}}</p>
       </div>
       <div>
-        <h3>Comments:</h3>
-        {{#each comments}}
-          <p>{{dataValues.content}}</p>
-        {{/each}}
+        {{#if comments}}
+          <br />
+          <h3>Comments:</h3>
+          {{#each comments}}
+            <p>{{dataValues.content}}</p>
+          {{/each}}
+        {{/if}}
       </div>
     </div>
+    <br />
   {{/each}}
 </article>
