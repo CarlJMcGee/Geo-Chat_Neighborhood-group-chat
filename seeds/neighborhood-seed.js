@@ -2,13 +2,7 @@ const { Neighborhood } = require("../models");
 
 const neighborhoodList = [
   {
-    name: "minnetonka",
-  },
-  {
-    name: "st louis park",
-  },
-  {
-    name: "bloomington",
+    name: "minneapolis",
   },
 ];
 
