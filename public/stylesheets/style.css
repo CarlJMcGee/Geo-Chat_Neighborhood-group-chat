@@ -63,6 +63,16 @@ body {
   display: inline-block;
   left: 90%;
 }
+img {
+    max-width: 30%;
+    max-height: 45%;
+    margin: 10px;
+    border: solid 5px #517990;
+}
+.images {
+    position: absolute;
+    left: 100px;
+}
 
 /*login page*/
 #log-in {
