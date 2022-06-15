@@ -1,173 +1,175 @@
 /* Teal Blue 517990, Pewter Blue (background color) 90ABBA, Beau Blue C7DAE5, Charcoal 1C394A--> from coolers.co */
 /*univeral*/
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    height: 100%; 
-    background-color: #90ABBA
+  height: 100%;
+  background-color: #90abba;
 }
 
-
 #welcome h1 {
-    align-items: center;
+  align-items: center;
 }
 
 .btn {
-    background-color: #c7dac7;
-    border-radius: 10px;
-    font-weight: bolder;
-    padding: 10px 25px;
-    display: inline-block;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  background-color: #c7dac7;
+  border-radius: 10px;
+  font-weight: bolder;
+  padding: 10px 25px;
+  display: inline-block;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 /*homepage*/
 .square {
-    color: #C7DAE5;
-    background-color: #1C394A;
-    padding: 50px;
-    border: solid 5px;
-    border-color: #517990;
-    position: absolute;
-    left: 35%;
-    top:50%;
+  color: #c7dae5;
+  background-color: #1c394a;
+  padding: 50px;
+  border: solid 5px;
+  border-color: #517990;
+  position: absolute;
+  left: 35%;
+  top: 50%;
 }
 .square a {
-    position: relative;
-    left: 25%;
-    background-color: #C7DAE5;
+  position: relative;
+  left: 25%;
+  background-color: #c7dae5;
 }
 .square h2 {
-    position: relative;
-    left: 5%;
-    padding: 30px;
+  position: relative;
+  left: 5%;
+  padding: 30px;
 }
 .form-control {
-    background-color: #C7DAE5;
+  background-color: #c7dae5;
 }
 .left {
-    background-color: #1C394A;
-    color:#C7DAE5;
-    border-bottom: 5px solid #517990;
+  background-color: #1c394a;
+  color: #c7dae5;
+  border-bottom: 5px solid #517990;
 }
 .left h1 {
-    font-weight: bolder;
-    position: center;
+  font-weight: bolder;
+  position: center;
 }
 .left h5 {
-    display: inline-block;
+  display: inline-block;
 }
 .nav {
-    position: absolute;
-    display: inline-block;
-    left: 90%;
+  position: absolute;
+  display: inline-block;
+  left: 90%;
 }
 
 /*login page*/
 #log-in {
-    border: 1px solid #1C394A;
-    width: 50%;
-    margin: 5% auto;
-    padding: 2%;
-    color: #C7DAE5;
-    background-color: #1C394A;
-    -webkit-border-radius: 11px;
-    -moz-border-radius: 11px;
-    -ms-border-radius: 11px;
-    border-radius: 11px; }
-    @media screen and (max-width: 645px) {
-      #log-in {
-        width: 80%;
-        padding: 5%; } }
-    #log-in .btn {
-      margin-left: 40%; }
-    #log-in input {
-      background-color: #C7DAE5;
-      border: 1px solid #C7DAE5; }
-    #log-in input:focus {
-      color: #EAE8D4;
-      background-color: #C7DAE5;
-      border: 1px solid #C7DAE5;
-      border-bottom: 3px solid #517990; }
-  
-    
+  border: 1px solid #1c394a;
+  width: 50%;
+  margin: 5% auto;
+  padding: 2%;
+  color: #c7dae5;
+  background-color: #1c394a;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  -ms-border-radius: 11px;
+  border-radius: 11px;
+}
+@media screen and (max-width: 645px) {
+  #log-in {
+    width: 80%;
+    padding: 5%;
+  }
+}
+#log-in .btn {
+  margin-left: 40%;
+}
+#log-in input {
+  color: #06649a;
+  background-color: #c7dae5;
+  border: 1px solid #c7dae5;
+}
+#log-in input:focus {
+  color: #0096ed;
+  background-color: #c7dae5;
+  border: 1px solid #c7dae5;
+  border-bottom: 3px solid #517990;
+}
 
 /*sign up sheet*/
 input {
-    margin: 5px;
-    font-display: #1C394A;
-    width: 30%;
+  margin: 5px;
+  font-display: #1c394a;
+  width: 30%;
 }
 p {
-    font-weight: bolder;
-    font-size: larger;
-    margin:7px;
-    text-decoration: underline;
+  font-weight: bolder;
+  font-size: larger;
+  margin: 7px;
+  text-decoration: underline;
 }
 .address input {
-    width: 98%;
-    display:block;
-    border: 1px solid #1C394A;
-    color: #C7DAE5;
-    padding: 5px;
-    background-color: #1C394A;
-    -webkit-border-radius: 11px;
-    -moz-border-radius: 11px;
-    -ms-border-radius: 11px;
-    border-radius: 5px;
+  width: 98%;
+  display: block;
+  border: 1px solid #1c394a;
+  color: #06649a;
+  padding: 5px;
+  background-color: #1c394a;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  -ms-border-radius: 11px;
+  border-radius: 5px;
 }
-.email input{
-    width: 30%;
-    border: 1px solid #1C394A;
-    color: #C7DAE5;
-    padding: 5px;
-    background-color: #1C394A;
-    border-radius: 5px;
+.email input {
+  width: 30%;
+  border: 1px solid #1c394a;
+  color: #06649a;
+  padding: 5px;
+  background-color: #1c394a;
+  border-radius: 5px;
 }
 /*dashboard*/
 h4 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 15px;
-    
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 15px;
 }
 
 .search {
-    padding-right: 5px;
-    width: 75%;
+  padding-right: 5px;
+  width: 75%;
 }
 #box {
-    color: #C7DAE5;
-    background-color: #1C394A;
-    padding: 50px;
-    border: solid 5px;
-    border-color: #517990;
-    width: 100%;
+  color: #c7dae5;
+  background-color: #1c394a;
+  padding: 50px;
+  border: solid 5px;
+  border-color: #517990;
+  width: 100%;
 }
 /*create-post hbs*/
 .post {
-    color: #C7DAE5;
-    background-color: #1C394A;
-    width: 100%;
-    height: 40%;
-    padding-left: 3px;
-    border: solid 5px #517990; 
-    
+  color: #c7dae5;
+  background-color: #1c394a;
+  width: 100%;
+  height: 40%;
+  padding-left: 3px;
+  border: solid 5px #517990;
 }
 .createpost {
-    background-color: white;
-    width: 90%;
-    height: 60%;
+  background-color: white;
+  width: 90%;
+  height: 60%;
 }
 .post button {
-    position: relative;
-    right: 0%;
-    bottom: 0%;
-
+  position: relative;
+  right: 0%;
+  bottom: 0%;
 }
 #post-feed {
-    position: absolute;  
+  position: absolute;
 }
 .post input {
-    display: inline-block;
+  display: inline-block;
 }
