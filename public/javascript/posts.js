@@ -22,9 +22,23 @@ const editPostFormHandler = async (e) => {
         "Content-Type": "application/json",
       },
     });
+
+    const resBody = await response.json();
+
     if (response.ok) {
       document.location.replace(`/post/${post_id}`);
     } else {
+      if (resBody.code === "bad language") {
+        var badLang = document.createElement("p");
+        badLang.className = "err";
+        badLang.innerHTML = resBody.message;
+        badLang.style.color = "red";
+        badLang.style.fontWeight = "normal";
+        badLang.style.textDecorationLine = "none";
+        document.querySelector("#edit-post-form").append(badLang);
+        return;
+      }
+
       alert(response.statusText);
     }
   }
@@ -51,9 +65,21 @@ const newPostFormHandler = async (e) => {
       },
     });
 
+    const resBody = await response.json();
+
     if (response.ok) {
       document.location.replace(`/dashboard`);
     } else {
+      if (resBody.code === "bad language") {
+        var badLang = document.createElement("p");
+        badLang.className = "err";
+        badLang.innerHTML = resBody.message;
+        badLang.style.color = "red";
+        badLang.style.fontWeight = "normal";
+        badLang.style.textDecorationLine = "none";
+        document.querySelector("#create-post-form").append(badLang);
+        return;
+      }
       alert(response.statusText);
     }
   }

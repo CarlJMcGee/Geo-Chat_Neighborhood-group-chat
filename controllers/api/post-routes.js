@@ -120,11 +120,18 @@ router.post("/", (req, res) => {
     user_id: req.session.userId,
     neighborhood_id: req.session.neighborhoodId,
   })
-    .then((databasePostData) =>
+    .then((databasePostData) => {
+      if (!databasePostData.isAcceptable) {
+        res.status(400).json({
+          message: `Post title or content contains unacceptable language. Please use PG language and try again :)`,
+          code: `bad language`,
+        });
+        return;
+      }
       res
         .status(200)
-        .json(`Post ${req.body.title} has been successfully created!`)
-    )
+        .json(`Post ${req.body.title} has been successfully created!`);
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -148,6 +155,15 @@ router.put("/:id", (req, res) => {
           );
         return;
       }
+
+      if (!databasePostData.isAcceptable) {
+        res.status(400).json({
+          message: `Post title or content contains unacceptable language. Please use PG language and try again :)`,
+          code: `bad language`,
+        });
+        return;
+      }
+
       res.json(
         `post with id =>: ${
           req.params.id
