@@ -224,6 +224,11 @@ color:#1c394a;
     width: 65%;
     height: 100%;
 }
+.display-post {
+    background-image: linear-gradient(rgb(208, 204, 204), #afc3cf);
+    width: 100%;
+    height: 100%; 
+}
 
 /*update post*/
 .update {
