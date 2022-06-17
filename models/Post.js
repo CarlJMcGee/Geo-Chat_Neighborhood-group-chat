@@ -1,7 +1,5 @@
 const sequelize = require("../config/connection");
 const { Model, DataTypes } = require("sequelize");
-const Filter = require("bad-words");
-const censor = new Filter();
 
 class Post extends Model {}
 
@@ -43,26 +41,6 @@ Post.init(
     },
   },
   {
-    hooks: {
-      beforeCreate(newPostData) {
-        let acceptable =
-          censor.isProfane(newPostData.title) ||
-          censor.isProfane(newPostData.content)
-            ? false
-            : true;
-        console.log(acceptable);
-        return (newPostData.isAcceptable = acceptable);
-      },
-      beforeUpdate(updatedPostData) {
-        let acceptable =
-          censor.isProfane(updatedPostData.title) ||
-          censor.isProfane(updatedPostData.content)
-            ? false
-            : true;
-
-        return (updatedPostData.isAcceptable = acceptable);
-      },
-    },
     sequelize,
     freezeTableName: true,
     underscored: true,

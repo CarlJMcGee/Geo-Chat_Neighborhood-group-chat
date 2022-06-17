@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const { Comment, Neighborhood, Post, User } = require("../../models");
+const Filter = require("bad-words");
+const censor = new Filter();
 
 // The `/api/posts` endpoint
 
@@ -114,6 +116,15 @@ router.post("/", (req, res) => {
         "user_id": "user_id goes here" (enventually the user_id will be taken from the session data),
       }
     */
+
+  if (censor.isProfane(req.body.title) || censor.isProfane(req.body.content)) {
+    res.status(400).json({
+      message: `Post title or content contains unacceptable language. Please use PG language and try again :)`,
+      code: `bad language`,
+    });
+    return;
+  }
+
   Post.create({
     title: req.body.title,
     content: req.body.content,
@@ -121,13 +132,6 @@ router.post("/", (req, res) => {
     neighborhood_id: req.session.neighborhoodId,
   })
     .then((databasePostData) => {
-      if (!databasePostData.isAcceptable) {
-        res.status(400).json({
-          message: `Post title or content contains unacceptable language. Please use PG language and try again :)`,
-          code: `bad language`,
-        });
-        return;
-      }
       res
         .status(200)
         .json(`Post ${req.body.title} has been successfully created!`);
@@ -140,6 +144,14 @@ router.post("/", (req, res) => {
 
 // Edit post
 router.put("/:id", (req, res) => {
+  if (censor.isProfane(req.body.title) || censor.isProfane(req.body.content)) {
+    res.status(400).json({
+      message: `Post title or content contains unacceptable language. Please use PG language and try again :)`,
+      code: `bad language`,
+    });
+    return;
+  }
+
   // Update a post by its id value
   Post.update(req.body, {
     where: {
@@ -153,14 +165,6 @@ router.put("/:id", (req, res) => {
           .json(
             `Sorry, No post with id =>: ${req.params.id} has been found! Please check your input and try again!`
           );
-        return;
-      }
-
-      if (!databasePostData.isAcceptable) {
-        res.status(400).json({
-          message: `Post title or content contains unacceptable language. Please use PG language and try again :)`,
-          code: `bad language`,
-        });
         return;
       }
 
