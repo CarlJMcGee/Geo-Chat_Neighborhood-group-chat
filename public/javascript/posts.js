@@ -12,20 +12,43 @@ const editPostFormHandler = async (e) => {
   ];
 
   if (post_text) {
-    const response = await fetch(`/api/posts/${post_id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        title: post_title,
-        content: post_text,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-      document.location.replace(`/post/${post_id}`);
-    } else {
-      alert(response.statusText);
+    try {
+      const response = await fetch(`/api/posts/${post_id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          title: post_title,
+          content: post_text,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const resBody = await response.json();
+
+      if (response.ok) {
+        document.location.replace(`/post/${post_id}`);
+      } else {
+        if (resBody.code === "bad language") {
+          if (document.querySelector(".err")) {
+            return;
+          }
+          var badLang = document.createElement("p");
+          badLang.className = "err";
+          badLang.innerHTML = resBody.message;
+          badLang.style.color = "#f00000";
+          badLang.style.fontWeight = "normal";
+          badLang.style.textDecorationLine = "none";
+          badLang.style.margin = "0";
+          badLang.style.padding = "0";
+          document.querySelector("#edit-post-form").append(badLang);
+          return;
+        }
+
+        alert(response.statusText);
+      }
+    } catch (err) {
+      if (err) throw err;
     }
   }
 };
@@ -40,21 +63,39 @@ const newPostFormHandler = async (e) => {
   const post_title = document.querySelector("#title-create").value.trim();
 
   if (post_text) {
-    const response = await fetch(`/api/posts/`, {
-      method: "POST",
-      body: JSON.stringify({
-        title: post_title,
-        content: post_text,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      const response = await fetch(`/api/posts/`, {
+        method: "POST",
+        body: JSON.stringify({
+          title: post_title,
+          content: post_text,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-    if (response.ok) {
-      document.location.replace(`/dashboard`);
-    } else {
-      alert(response.statusText);
+      const resBody = await response.json();
+
+      if (response.ok) {
+        document.location.replace(`/dashboard`);
+      } else {
+        if (resBody.code === "bad language") {
+          var badLang = document.createElement("p");
+          badLang.className = "err";
+          badLang.innerHTML = resBody.message;
+          badLang.style.color = "#f00000";
+          badLang.style.fontWeight = "normal";
+          badLang.style.textDecorationLine = "none";
+          badLang.style.margin = "0";
+          badLang.style.padding = "0";
+          document.querySelector("#create-post-form").append(badLang);
+          return;
+        }
+        alert(response.statusText);
+      }
+    } catch (err) {
+      if (err) throw err;
     }
   }
 };

@@ -12,19 +12,42 @@ const editCommentFormHandler = async (e) => {
   postId = document.querySelector("#edit-comment-form").dataset.postId;
 
   if (comment_text) {
-    const response = await fetch(`/api/comments/${comment_id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        content: comment_text,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-      document.location.replace(`/post/${postId}`);
-    } else {
-      alert(response.statusText);
+    try {
+      const response = await fetch(`/api/comments/${comment_id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          content: comment_text,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const resBody = await response.json();
+
+      if (response.ok) {
+        document.location.replace(`/post/${postId}`);
+      } else {
+        if (resBody.code === "bad language") {
+          if (document.querySelector(".err")) {
+            return;
+          }
+          var badLang = document.createElement("p");
+          badLang.className = "err";
+          badLang.innerHTML = resBody.message;
+          badLang.style.color = "#f00000";
+          badLang.style.fontWeight = "normal";
+          badLang.style.textDecorationLine = "none";
+          badLang.style.margin = "0";
+          badLang.style.padding = "0";
+          document.querySelector("#edit-comment-form").append(badLang);
+          return;
+        }
+
+        alert(response.statusText);
+      }
+    } catch (err) {
+      if (err) throw err;
     }
   }
 };
@@ -41,20 +64,43 @@ const newCommentFormHandler = async (e) => {
   ];
 
   if (comment_text) {
-    const response = await fetch(`/api/comments/`, {
-      method: "POST",
-      body: JSON.stringify({
-        content: comment_text,
-        post_id: postId,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-      document.location.replace(`/post/${postId}`);
-    } else {
-      alert(response.statusText);
+    try {
+      const response = await fetch(`/api/comments/`, {
+        method: "POST",
+        body: JSON.stringify({
+          content: comment_text,
+          post_id: postId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const resBody = await response.json();
+
+      if (response.ok) {
+        document.location.replace(`/post/${postId}`);
+      } else {
+        if (resBody.code === "bad language") {
+          if (document.querySelector(".err")) {
+            return;
+          }
+          var badLang = document.createElement("p");
+          badLang.className = "err";
+          badLang.innerHTML = resBody.message;
+          badLang.style.color = "#f00000";
+          badLang.style.fontWeight = "normal";
+          badLang.style.textDecorationLine = "none";
+          badLang.style.margin = "0";
+          badLang.style.padding = "0";
+          document.querySelector("#new-comment-form").append(badLang);
+          return;
+        }
+
+        alert(response.statusText);
+      }
+    } catch (err) {
+      if (err) throw err;
     }
   }
 };
