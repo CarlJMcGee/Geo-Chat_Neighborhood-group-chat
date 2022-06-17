@@ -1,13 +1,13 @@
 <article>
-  <h3>Latest Posts in {{neighborhood}}:</h3>
-  <a href="/new-post/">New Post</a>
+  <h3 id="headline">Latest Posts in {{neighborhood}}:</h3>
+  <a href="/new-post/" class="btn new-post">New Post</a>
   <br />
   <br />
   {{#each posts}}
     <br />
     <div>
       <div>
-        <a href="/post/{{dataValues.id}}"><h3>{{dataValues.title}}</h3></a>
+        <a class='post-dash' href="/post/{{dataValues.id}}"><h3>{{dataValues.title}}</h3></a>
         <h4>{{OP.dataValues.firstName}} {{OP.dataValues.lastName}}</h4>
         <p>{{dataValues.content}}</p>
       </div>

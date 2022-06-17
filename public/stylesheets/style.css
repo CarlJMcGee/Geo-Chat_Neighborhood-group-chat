@@ -6,7 +6,7 @@
 
 body {
   height: 100%;
-  background-color: #90abba;
+  background-color: #E7EBEE;
 }
 
 #welcome h1 {
@@ -14,8 +14,10 @@ body {
 }
 
 .btn {
-  background-color: #c7dac7;
+  background-color: #E7EBEE;
+  color: #1c394a;
   border-radius: 10px;
+  border-color: #1c394a;
   font-weight: bolder;
   padding: 10px 25px;
   display: inline-block;
@@ -26,11 +28,11 @@ body {
 .square {
   color: #c7dae5;
   background-color: #1c394a;
-  padding: 50px;
+  padding: 30px;
   border: solid 5px;
   border-color: #517990;
   position: absolute;
-  left: 35%;
+  left: 33%;
   top: 50%;
 }
 .square a {
@@ -40,7 +42,7 @@ body {
 }
 .square h2 {
   position: relative;
-  left: 5%;
+  left: 15%;
   padding: 30px;
 }
 .form-control {
@@ -147,15 +149,17 @@ h4 {
 
 .search {
   padding-right: 5px;
-  width: 75%;
+  width: 50%;
+  display: inline-flex;
+  justify-content: center;
 }
 #box {
-  color: #c7dae5;
-  background-color: #1c394a;
-  padding: 50px;
+  color: #1c394a;
+  background-color: #E7EBEE;
+  padding: 30px;
   border: solid 5px;
   border-color: #517990;
-  width: 100%;
+  width: 65%;
 }
 /*create-post hbs*/
 .post {
@@ -181,4 +185,18 @@ h4 {
 }
 .post input {
   display: inline-block;
+}
+
+/*post*/
+#headline {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: underline;
+    text-align: center;
+}
+.post-dash {
+color:#517990;
+}
+.new-post {
+    position: absolute;
+
 }
