@@ -1,6 +1,8 @@
-<div>
+<div class="post">
+  
   <form id="edit-comment-form" data-post-id="{{comment.post_id}}">
-    <label for="post-body">content</label>
+    <h4>Edit Comment Below:</h4>
+    <label for="post-body" placeholder="Enter text here"></label>
     <textarea
       type="text"
       name="comment-body"
@@ -9,7 +11,7 @@
       rows="10"
     >{{comment.content}}</textarea>
     <br />
-    <button type="submit">Update Post</button>
+    <button type="submit" class="btn">Update Post</button>
   </form>
 </div>
 <script src="/javascript/comments.js"></script>

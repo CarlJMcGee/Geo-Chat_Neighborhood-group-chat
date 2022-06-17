@@ -1,11 +1,11 @@
-<section>
-  <div id="posts-dash">
-    <h3>{{post.dataValues.title}} {{#if isOP}} <a href="/post/{{post.dataValues.id}}/edit"><span>Edit</span></a></h3> {{/if}}
+<section class="display">
+  <div id="posts-dash" >
     <h4>{{post.OP.dataValues.firstName}} {{post.OP.dataValues.lastName}}</h4>
+    <h3>{{post.dataValues.title}} {{#if isOP}} <a href="/post/{{post.dataValues.id}}/edit" class="btn"><span>Edit</span></a></h3> {{/if}}
     <p>{{post.dataValues.content}}</p>
   </div>
-  <br />
-  <a href="/post/{{post.dataValues.id}}/comment">New Comment</a>
+  <br/>
+  <a href="/post/{{post.dataValues.id}}/comment" class="btn">New Comment</a>
   {{#each post.comments}}
     <div>
       <h4>{{commenter.dataValues.firstName}}

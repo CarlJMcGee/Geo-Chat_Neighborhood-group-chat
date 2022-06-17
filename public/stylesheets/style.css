@@ -161,14 +161,24 @@ h4 {
   border-color: #517990;
   width: 65%;
 }
+.box{
+    display:flex;
+    justify-content: center;
+}
+.new-post {
+    position: absolute;
+    left: 75%;
+    top: 20%;
+}
 /*create-post hbs*/
 .post {
-  color: #c7dae5;
-  background-color: #1c394a;
-  width: 100%;
-  height: 40%;
+  color: #1c394a;
+  background-image: linear-gradient(rgb(208, 204, 204), #afc3cf);
+  width: 65%;
+  height: 100%;
   padding-left: 3px;
-  border: solid 5px #517990;
+  display: flex;
+  justify-content: center;
 }
 .createpost {
   background-color: white;
@@ -181,7 +191,9 @@ h4 {
   bottom: 0%;
 }
 #post-feed {
-  position: absolute;
+    text-decoration: underline;
+  display: flex;
+  justify-content: center;
 }
 .post input {
   display: inline-block;
@@ -190,13 +202,31 @@ h4 {
 /*post*/
 #headline {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    text-decoration: underline;
-    text-align: center;
+    font-weight: lighter;
+    display: flex;
+    justify-content: center;
+    
 }
-.post-dash {
-color:#517990;
-}
-.new-post {
-    position: absolute;
 
+#post-dash a {
+color:#1c394a;
+}
+#title-user {
+    display: inline-flex;
+}
+
+#one-post {
+    border: solid 5px #517990;
+    
+}
+.display {
+    background-image: linear-gradient(rgb(208, 204, 204), #afc3cf);
+    width: 65%;
+    height: 100%;
+}
+
+/*update post*/
+.update {
+    position: absolute;
+    left: 30%;
 }

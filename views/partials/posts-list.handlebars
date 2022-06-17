@@ -1,22 +1,26 @@
-<article>
+
+<a href="/new-post/" class="btn new-post">New Post</a>
+<article class="display">
   <h3 id="headline">Latest Posts in {{neighborhood}}:</h3>
-  <a href="/new-post/" class="btn new-post">New Post</a>
+  
   <br />
   <br />
   {{#each posts}}
     <br />
-    <div>
+    <div id="one-post">
+      <div id="title-user">
+        <h4>{{OP.dataValues.firstName}} {{OP.dataValues.lastName}}:</h4><span>
+        <a class='post-dash' href="/post/{{dataValues.id}}"><h4>{{dataValues.title}}</h4></a></span>
+      </div>
       <div>
-        <a class='post-dash' href="/post/{{dataValues.id}}"><h3>{{dataValues.title}}</h3></a>
-        <h4>{{OP.dataValues.firstName}} {{OP.dataValues.lastName}}</h4>
-        <p>{{dataValues.content}}</p>
+        <p class="post-dash">{{dataValues.content}}</p>
       </div>
       <div>
         {{#if comments}}
           <br />
-          <h3>Comments:</h3>
+          <h4>Comments:</h4>
           {{#each comments}}
-            <p>{{dataValues.content}}</p>
+            <p class="post-dash">{{dataValues.content}}</p>
           {{/each}}
         {{/if}}
       </div>

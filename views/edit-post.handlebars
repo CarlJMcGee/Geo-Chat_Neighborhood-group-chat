@@ -1,19 +1,22 @@
 <!-- to make posts? -->
-<div>
+<div class="post">
   <form id="edit-post-form">
-    <label for="title">Title</label>
+    <h4>Edit Post Below:</h4>
+    <p>Title:</p>
+    <label for="title"></label>
     <input type="text" name="title" id="title-edit" value="{{post.title}}" />
     <br />
-    <label for="post-body">content</label>
+    <p>Content:</p>
+    <label for="post-body" placeholder="Enter text here"></label>
     <textarea
       type="text"
       name="post-body"
       id="content-edit"
-      cols="50"
+      cols="60"
       rows="10"
     >{{post.content}}</textarea>
     <br />
-    <button type="submit">Update Post</button>
+    <button type="submit" class="btn">Update Post</button>
   </form>
 </div>
 <script src="/javascript/posts.js"></script>
