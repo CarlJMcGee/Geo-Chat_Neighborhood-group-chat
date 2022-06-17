@@ -174,7 +174,7 @@ h4 {
 .post {
   color: #1c394a;
   background-image: linear-gradient(rgb(208, 204, 204), #afc3cf);
-  width: 65%;
+  width: 100%;
   height: 100%;
   padding-left: 3px;
   display: flex;
@@ -229,4 +229,7 @@ color:#1c394a;
 .update {
     position: absolute;
     left: 30%;
+}
+#comment-btn {
+    display: inline-block;
 }
