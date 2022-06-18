@@ -48,4 +48,4 @@ https://github.com/CarlJMcGee/Project-2_Neighborhood-group-chat
 
 ## Live App
 
-[Visit my Heroku]()
+[Visit my Heroku](https://geo-chat-neighborhoods.herokuapp.com/homepage)
