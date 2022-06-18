@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { json } = require("body-parser");
 const { Comment, Neighborhood, Post, User } = require("../../models");
+const Filter = require("bad-words");
+const censor = new Filter();
 
 // The `/api/comments` endpoint
 
@@ -77,6 +79,15 @@ router.post("/", (req, res) => {
         "user_id": "user_id goes here",
       }
     */
+
+  if (censor.isProfane(req.body.content)) {
+    res.status(400).json({
+      message: `Post title or content contains unacceptable language. Please use PG language and try again :)`,
+      code: `bad language`,
+    });
+    return;
+  }
+
   Comment.create({
     content: req.body.content,
     user_id: req.session.userId,
@@ -97,6 +108,14 @@ router.post("/", (req, res) => {
 
 // Edit Comment
 router.put("/:id", (req, res) => {
+  if (censor.isProfane(req.body.content)) {
+    res.status(400).json({
+      message: `Post title or content contains unacceptable language. Please use PG language and try again :)`,
+      code: `bad language`,
+    });
+    return;
+  }
+
   // Update a comment by its id value
   Comment.update(req.body, {
     where: {
